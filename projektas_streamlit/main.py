@@ -38,16 +38,19 @@ with col3:
  
 if pressed:
     irasai.append(Record(value, description, record_type))
- 
+data = []
 islaidos, pajamos = [], []
 balansas = 0
 for irasas in irasai:
     if irasas.tipas == "islaidos":
         islaidos.append(irasas)
         balansas -= irasas.value
+        data.append(balansas)
+        
     if irasas.tipas == "pajamos":
         pajamos.append(irasas)
         balansas += irasas.value
+        data.append(balansas)
  
 with st.expander("Islaidos"):
     for irasas in islaidos:
@@ -64,7 +67,10 @@ elif balansas < 0:
 
 
 
-data = [70000, 50000, 60000, 80000, 45000, 10000, 5000, 3000, 50000, 65000]
+# for irasas in pajamos:
+#     data.append(irasas.value)
+# for irasas in islaidos:
+#     data.append(-(irasas.value))
 
  
 df = pd.DataFrame(data)
